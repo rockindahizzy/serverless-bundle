@@ -98,6 +98,11 @@ function plugins() {
   // Ignore all locale files of moment.js
   plugins.push(new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/));
 
+  for(const ignorePlugin of config.options.ignorePlugins){
+    const regex = new RegExp("^"+ignorePlugin+"$");
+    plugins.push(new webpack.IgnorePlugin(regex))
+  }
+
   return plugins;
 }
 
